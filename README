@@ -1,1 +1,53 @@
-test
+2021/09/27 17:10:33 [DEBUG][worker] serverWorker.go:187: get task request:[{"processId":"67004681-b8b2-4aad-93e6-5534681c9b6f","stateDetails":{"elaspedtime":1158.3692863649994,"history_erro
+rs":{"parse_errors":null,"read_errors":null,"send_errors":null,"transform_errors":null},"lag":{"ftlags":0,"size":0,"sizeunit":"","total":0},"logpath":"","name":"67004681-b8b2-4aad-93e6-5534
+681c9b6f","parserStats":{"errors":0,"last_error":"","speed":0,"success":1,"trend":"stable"},"readDataCount":1,"readDataSize":1,"readerStats":{"errors":0,"last_error":"","speed":0,"success":
+1,"trend":"stable"},"readspeed":0,"readspeed_kb":0,"readspeedtrend":"stable","readspeedtrend_kb":"stable","runningStatus":"running","senderStats":{"kafkaSender:(kafkaUrl:[10.68.233.30:18108
+ 10.68.233.3:18108 10.68.235.17:18108],topic:[docc_remotediscovery_data_topic_input])":{"errors":0,"last_error":"","speed":0,"success":1,"trend":""}},"transformStats":{"label":{"errors":1,"
+last_error":"find total 1 erorrs in transform label, last error info is the key collectorTemplateId already exists","speed":0,"success":0,"trend":"stable"},"label-0":{"errors":1,"last_error
+":"find total 1 erorrs in transform label, last error info is the key collectorTemplateId already exists","speed":0,"success":0,"trend":"stable"}}},"timestamp":1632733833000}].
+2021/09/27 17:10:33 [DEBUG][worker] serverWorker.go:188: get task response:{"status":"success","msg":"request success","code":100000,"data":[]}.
+2021/09/27 17:10:43 [DEBUG][agent] statusHandle.go:43: agent[cdc] update status result:{"pid":28186, "version": "v3.1.4", "agent_id": "cdc", "url":"http://127.0.0.1:30000"}
+2021/09/27 17:10:43 [DEBUG][agent] cdc.go:230: agent[cdc] get runner status response:{"code":"L200","data":[{"processId":"67004681-b8b2-4aad-93e6-5534681c9b6f","stateDetails":{"name":"67004
+681-b8b2-4aad-93e6-5534681c9b6f","logpath":"","readDataSize":1,"readDataCount":1,"elaspedtime":1167.3718317429996,"lag":{"size":0,"sizeunit":"","ftlags":0,"total":0},"readerStats":{"errors"
+:0,"success":1,"speed":0,"trend":"stable","last_error":""},"parserStats":{"errors":0,"success":1,"speed":0,"trend":"stable","last_error":""},"senderStats":{"kafkaSender:(kafkaUrl:[10.68.233
+.30:18108 10.68.233.3:18108 10.68.235.17:18108],topic:[docc_remotediscovery_data_topic_input])":{"errors":0,"success":1,"speed":0,"trend":"","last_error":""}},"transformStats":{"label":{"er
+rors":1,"success":0,"speed":0,"trend":"stable","last_error":"find total 1 erorrs in transform label, last error info is the key collectorTemplateId already exists"},"label-0":{"errors":1,"s
+uccess":0,"speed":0,"trend":"stable","last_error":"find total 1 erorrs in transform label, last error info is the key collectorTemplateId already exists"}},"readspeed_kb":0,"readspeed":0,"r
+eadspeedtrend_kb":"stable","readspeedtrend":"stable","runningStatus":"running","history_errors":{"read_errors":null,"parse_errors":null,"transform_errors":null,"send_errors":null}},"timesta
+mp":1632733843000}]}
+2021/09/27 17:10:43 [DEBUG][worker] serverWorker.go:187: get task request:[{"processId":"67004681-b8b2-4aad-93e6-5534681c9b6f","stateDetails":{"elaspedtime":1167.3718317429996,"history_erro
+rs":{"parse_errors":null,"read_errors":null,"send_errors":null,"transform_errors":null},"lag":{"ftlags":0,"size":0,"sizeunit":"","total":0},"logpath":"","name":"67004681-b8b2-4aad-93e6-5534
+681c9b6f","parserStats":{"errors":0,"last_error":"","speed":0,"success":1,"trend":"stable"},"readDataCount":1,"readDataSize":1,"readerStats":{"errors":0,"last_error":"","speed":0,"success":
+1,"trend":"stable"},"readspeed":0,"readspeed_kb":0,"readspeedtrend":"stable","readspeedtrend_kb":"stable","runningStatus":"running","senderStats":{"kafkaSender:(kafkaUrl:[10.68.233.30:18108
+ 10.68.233.3:18108 10.68.235.17:18108],topic:[docc_remotediscovery_data_topic_input])":{"errors":0,"last_error":"","speed":0,"success":1,"trend":""}},"transformStats":{"label":{"errors":1,"
+last_error":"find total 1 erorrs in transform label, last error info is the key collectorTemplateId already exists","speed":0,"success":0,"trend":"stable"},"label-0":{"errors":1,"last_error
+":"find total 1 erorrs in transform label, last error info is the key collectorTemplateId already exists","speed":0,"success":0,"trend":"stable"}}},"timestamp":1632733843000}].
+2021/09/27 17:10:43 [DEBUG][worker] serverWorker.go:188: get task response:{"status":"success","msg":"request success","code":100000,"data":[{"taskId":"c642306c06df4d539187a0a61e43f836","ac
+countId":"110","daemonInstanceId":"6c449c43bf506863064a5ebcc8a10129","taskConfig":{"agent_id":"cim","os":"Linux","version":"v6.0.3","install_package_location":"http://10.68.238.224:18084/ap
+i/ext/gaia/daemon/agent/download/djYuMC4zQExpbnV4QGNpbUAxMTBAeDg2"},"taskState":"created","stateDetails":null,"createTime":1632733834107,"timestamp":null,"executeTime":1632733834107,"execut
+or":"2","type":"deploy","operate":"agent_install","objectId":"6c449c43bf506863064a5ebcc8a10129"}]}.
+2021/09/27 17:10:43 [INFO][manager] exectask.go:103: task[c642306c06df4d539187a0a61e43f836] Start to install agent from http://10.68.238.224:18084/api/ext/gaia/daemon/agent/download/djYuMC4
+zQExpbnV4QGNpbUAxMTBAeDg2.
+2021/09/27 17:10:44 [INFO][manager] install.go:54: mxagent install success!
+2021/09/27 17:10:44 [DEBUG][agent] agent.go:66: exec agent info path /data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b/bin/server, result is {"pid":0,"version":"6.0.3","agent_id":"c
+im"}
+.
+2021/09/27 17:10:44 [INFO][manager] install.go:70: install
+2021/09/27 17:10:45 [ERROR][agent] statusHandle.go:119: agent[cim] startup error:GetLinuxModuleFileName:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b/bin/MxAgent
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+GetLinuxModuleFileName:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b/bin/MxAgent
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+agent start fail
+2021/09/27 17:10:45 [ERROR][manager] exectask.go:122: task[c642306c06df4d539187a0a61e43f836] install agent, startup error:start cdc agent error please see agent log,err is GetLinuxModuleFil
+eName:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b/bin/MxAgent
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+GetLinuxModuleFileName:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b/bin/MxAgent
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+strpath:/data/agentdaemon/agents/8d42078f555d8e37d324ab357eef302b
+agent start fail
+2021/09/27 17:10:45 [DEBUG][worker] serverWorker.go:209: report task result request:[{"code":200005,"taskId":"c642306c06df4d539187a0a61e43f836","detail":{"msg":"task[%s] install agent, star
+tup error.","agent_instance_id":"","agent_id":"","version":"","pid":0,"url":"","collectors":null,"p_resource_occupancy":null,"fusing":"","fusing_rules_version":0,"fusing_condition":{"cpu":0
+,"memory":0,"disk":0},"configId":"","fusingId":""},"status":"fail","timestamp":1632733845000}].
