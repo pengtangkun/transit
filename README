@@ -1,1 +1,358 @@
+{
+    "routeId":"docc",
+    "moduleCode":"117",
+    "moduleName":"采控中心",
+    "moduleEnName": "DOCC",
+    "menus":[
+        {
+            "name":"节点管理",
+            "code":"nodeManagement",
+            "type":1,
+            "description":"节点管理",
+            "parentCode":"",
+            "funcUrlList":[
 
+            ]
+        },
+        {
+            "name":"采集中心",
+            "code":"collectionCenter",
+            "type":1,
+            "description":"采集中心",
+            "parentCode":"",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"自动发现",
+            "code":"autoDiscover",
+            "type":1,
+            "description":"自动发现",
+            "parentCode":"",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"远程自动发现",
+            "code":"remoteAutoDiscover",
+            "type":1,
+            "description":"远程自动发现",
+            "parentCode":"autoDiscover",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:REMOTE_AUTO_DISCOVER_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"remoteAutoDiscover",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:REMOTE_AUTO_DISCOVER_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"remoteAutoDiscover",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"agent管理",
+            "code":"agentManagement",
+            "type":1,
+            "description":"agent管理",
+            "parentCode":"",
+            "tag":"",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"系统管理",
+            "code":"systemManagement",
+            "type":1,
+            "parentCode":"",
+            "description":"系统管理",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"主机管理",
+            "code":"hostManagement",
+            "type":1,
+            "description":"主机管理",
+            "parentCode":"nodeManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"集群管理",
+            "code":"clusterManagement",
+            "type":1,
+            "description":"集群管理",
+            "parentCode":"nodeManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"日志采集",
+            "code":"logCollection",
+            "type":1,
+            "description":"日志采集",
+            "parentCode":"collectionCenter",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"版本管理",
+            "code":"versionManagement",
+            "type":1,
+            "description":"版本管理",
+            "parentCode":"agentManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"熔断保护设置",
+            "code":"fusingSetting",
+            "type":1,
+            "description":"熔断保护设置",
+            "parentCode":"systemManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"配置中心",
+            "code":"configurationCenter",
+            "type":1,
+            "description":"配置中心",
+            "parentCode":"systemManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:NODE_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"hostManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:NODE_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"hostManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:CLUSTER_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"clusterManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:CLUSTER_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"clusterManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:LOGCOLLECTION_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"logCollection",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:LOGCOLLECTION_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"logCollection",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:VERSION_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"versionManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:VERSION_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"versionManagement",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:FUSINGSETTING_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"fusingSetting",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:FUSINGSETTING_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"fusingSetting",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"查看",
+            "code":"BTN:CONFIGURATION_VIEW",
+            "type":4,
+            "description":"查看",
+            "parentCode":"configurationCenter",
+            "funcUrlList":[
+
+            ]
+        },
+        {
+            "name":"处置",
+            "code":"BTN:CONFIGURATION_EDIT",
+            "type":4,
+            "description":"处置",
+            "parentCode":"configurationCenter",
+            "funcUrlList":[
+
+            ]
+        } ,
+    {
+      "name":"模板库",
+      "code":"templateLib",
+      "type":1,
+      "description":"模板库",
+      "parentCode":"collectionCenter",
+      "funcUrlList":[] 
+    },  
+    {
+      "name":"指标采集监控",
+      "code":"sysCollection",
+      "type":1,
+      "description":"指标采集监控",
+      "parentCode":"collectionCenter",
+      "funcUrlList":[
+
+      ]
+    },
+    {
+      "name":"其他采集监控",
+      "code":"otherCollection",
+      "type":1,
+      "description":"其他采集监控",
+      "parentCode":"collectionCenter",
+      "funcUrlList":[
+
+      ]
+    },
+    {
+        "name":"查看",
+        "code":"BTN:TEMPLATELIB_VIEW",
+        "type":4,
+        "description":"查看",
+        "parentCode":"templateLib",
+        "funcUrlList":[
+
+        ]
+    },
+    {
+        "name":"处置",
+        "code":"BTN:TEMPLATELIB_EDIT",
+        "type":4,
+        "description":"处置",
+        "parentCode":"templateLib",
+        "funcUrlList":[
+
+        ]
+    },
+    {
+      "name":"查看",
+      "code":"BTN:SYSCOLLECTION_VIEW",
+      "type":4,
+      "description":"查看",
+      "parentCode":"sysCollection",
+      "funcUrlList":[
+
+      ]
+    },
+    {
+      "name":"处置",
+      "code":"BTN:SYSCOLLECTION_EDIT",
+      "type":4,
+      "description":"处置",
+      "parentCode":"sysCollection",
+      "funcUrlList":[
+
+      ]
+    },
+    {
+      "name":"查看",
+      "code":"BTN:OTHERCOLLECTION_VIEW",
+      "type":4,
+      "description":"查看",
+      "parentCode":"otherCollection",
+      "funcUrlList":[
+
+      ]
+    },
+    {
+      "name":"处置",
+      "code":"BTN:OTHERCOLLECTION_EDIT",
+      "type":4,
+      "description":"处置",
+      "parentCode":"otherCollection",
+      "funcUrlList":[
+
+      ]
+    }
+
+    ]
+}
