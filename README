@@ -1,1 +1,10 @@
-xxx
+2021/09/28 18:28:25 [DEBUG][worker] serverWorker.go:160: heartbeat response:{"status":"success","msg":"request success","code":100000,"data":{"config":{}}}.
+2021/09/28 18:28:35 [ERROR][util] util.go:302: create request error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:35 [ERROR][worker] serverWorker.go:184: get task error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:35 [ERROR][manager] manager.go:618: pull task error is parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:45 [ERROR][util] util.go:302: create request error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:45 [ERROR][worker] serverWorker.go:184: get task error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:45 [ERROR][manager] manager.go:618: pull task error is parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:55 [ERROR][util] util.go:302: create request error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:55 [ERROR][worker] serverWorker.go:184: get task error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+2021/09/28 18:28:55 [ERROR][manager] manager.go:618: pull task error is parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
