@@ -1,10 +1,300 @@
-2021/09/28 18:28:25 [DEBUG][worker] serverWorker.go:160: heartbeat response:{"status":"success","msg":"request success","code":100000,"data":{"config":{}}}.
-2021/09/28 18:28:35 [ERROR][util] util.go:302: create request error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:35 [ERROR][worker] serverWorker.go:184: get task error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:35 [ERROR][manager] manager.go:618: pull task error is parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:45 [ERROR][util] util.go:302: create request error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:45 [ERROR][worker] serverWorker.go:184: get task error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:45 [ERROR][manager] manager.go:618: pull task error is parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:55 [ERROR][util] util.go:302: create request error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:55 [ERROR][worker] serverWorker.go:184: get task error:parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
-2021/09/28 18:28:55 [ERROR][manager] manager.go:618: pull task error is parse "http://10.68.238.224:18084/api/ext/gaia/daemon//fetch/pekshcsitd3856710.68.236.114\n": net/url: invalid control character in URL.
+#!/bin/bash
+
+bin=$(cd `dirname $0`; pwd)
+
+base=$(cd $bin/.. && pwd)
+
+conf=$(cd $base/conf && pwd)
+
+logs=$(cd $base/logs && pwd)
+
+meta=$(cd $base/meta && pwd)
+
+packageName=agentdaemon
+
+confName=daemon.conf
+
+logName=runstatus.log
+
+srcAgentPath="\"agents_path\":.*/agents\""
+desAgentPath="\"agents_path\":\"$base/agents\""
+
+srcLogPath="\"log_path\":.*/daemon.log\""
+desLogPath="\"log_path\":\"$base/logs/daemon.log\""
+
+srcMetaPath="\"meta_path\":.*/meta\""
+desMetaPath="\"meta_path\":\"$base/meta\""
+
+srcdocc="\"docc\":.*\""
+desdocc="\"docc\":\"$hostip\""
+
+srctoken="\"token\":.*\""
+destoken="\"token\":\"$token\""
+
+srcis="\"used_proxy\":.*,"
+destis="\"used_proxy\":$isProxy,"
+
+srcrpc="\"req_address\":.*\""
+desrpc="\"req_address\":\"$rpcadressip\""
+
+ip=$2
+
+status(){
+    Pid=$(ps -ef | grep -v grep | grep "$bin/$packageName" | grep -v upgrade)
+    if [ "$Pid" != "" ]; then
+        Pid=$(ps -ef | grep "$bin/$packageName" | grep -v grep | grep -v upgrade | awk '{printf $2}')
+        echo $Pid
+    fi
+}
+
+start(){
+    cd $bin
+    cdcS=$(status)
+    if [ "$cdcS" != "" ]; then
+        echo "program is running"
+        return
+    fi
+    Pid=$(nohup $bin/$packageName -confpath $conf/$confName -basepath $bin/base -installParams $meta/installParams >> $logs/$logName 2>&1 & echo $!)
+    sleep 1
+    cdcS=$(status)
+    if [ "$cdcS" == "" ]; then
+        echo program startup fail
+        return
+    fi
+    echo $Pid
+}
+
+stop(){
+    Pid=$(status)
+    echo $Pid
+    if [ "$Pid" != "" ]; then
+        while ((1))
+        do
+            result=$(kill -SIGQUIT $Pid)
+            if [ "$result" == "" ]; then
+                echo "program stop success"
+            break
+            fi
+        sleep 1
+        done
+        return
+    fi
+    echo "program is stopped"
+}
+
+restart(){
+    stop
+    start
+}
+
+filepath(){
+    touch /data/agentdaemon/meta/.daemonid
+    ip=`ifconfig eth0|grep -w inet|awk '{print $2}'`
+    hostname=`hostname`
+    echo "$hostname$ip">/data/agentdaemon/meta/.daemonid
+    sed -i 's#'$srcLogPath'#'$desLogPath'#' $conf/$confName
+    sed -i 's#'$srcAgentPath'#'$desAgentPath'#' $conf/$confName
+    sed -i 's#'$srcMetaPath'#'$desMetaPath'#' $conf/$confName
+    sed -i 's#'$srcdocc'#'$desdocc'#' $conf/$confName
+    if [ "$hostip" != "" ]; then
+        sed -i 's#'$srcdocc'#'$desdocc'#' $conf/$confName
+    fi
+    if [ "$token" != "" ]; then
+        sed -i 's#'$srctoken'#'$destoken'#' $conf/$confName
+    fi
+    if [ "$isProxy" != "" ]; then
+        sed -i 's#'$srcis'#'$destis'#' $conf/$confName
+    fi
+    if [ "$rpcadressip" != "" ]; then
+        sed -i 's#'$srcrpc'#'$desrpc'#' $conf/$confName
+    fi
+}
+
+oldcdc(){
+    cdcPid=$(ps -ef | grep 'cdc -f' |grep -v 'agentdaemon' | grep -v grep | awk '{print $2}')
+    if [ "$cdcPid" != "" ]; then
+        ps -ef | grep 'cdc -f' | grep -v grep | awk '{print $2}'
+    else
+        if [ "$1" != "" ]; then
+            find $1 -name .cdcconfs
+        fi
+    fi
+}
+
+autoStart() {
+  systemType=$(cat /etc/issue | grep Ubuntu)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStartUbuntu)
+  fi
+
+  systemType=$(cat /etc/issue | grep Kylin)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStartUbuntu)
+  fi
+
+  systemType=$(cat /etc/redhat-release | grep CentOS)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStartCentos)
+  fi
+
+  systemType=$(uname | grep AIX)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStartAIX)
+  fi
+
+  systemType=$(cat /etc/redhat-release | grep 'Red Hat')
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStartCentos)
+  fi
+}
+
+autoStop() {
+  systemType=$(cat /etc/issue | grep Ubuntu)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStopUbuntu)
+  fi
+
+  systemType=$(cat /etc/issue | grep Kylin)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStopUbuntu)
+  fi
+
+  systemType=$(cat /etc/redhat-release | grep CentOS)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStopCentos)
+  fi
+
+  systemType=$(uname | grep AIX)
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStopAIX)
+  fi
+
+  systemType=$(cat /etc/redhat-release | grep 'Red Hat')
+  if [ "$systemType" != "" ]; then
+    echo -e $(autoStopCentos)
+  fi
+}
+
+
+function autoStartUbuntu() {
+  sudo sh -c 'echo "#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          agentdaemon
+# Required-start:    '$local_fs' '$remote_fs' '$network' '$syslog'
+# Required-Stop:     '$local_fs' '$remote_fs' '$network' '$syslog'
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: agentdaemon start
+# Description:       agentdaemon start
+### END INIT INFO
+
+start() {
+	cd '$bin'
+	./base start
+}
+stop() {
+	cd '$bin'
+	./base stop
+}
+case "\$1" in
+	start)
+		start
+		;;
+  stop)
+		stop
+		;;
+	*)
+esac
+" >/etc/init.d/agentdaemon'
+
+  cd /etc/init.d
+  sudo chmod +x agentdaemon
+  sudo update-rc.d agentdaemon defaults 96
+}
+
+function autoStopUbuntu() {
+  cd /etc/init.d
+  sudo update-rc.d -f agentdaemon remove
+}
+
+function autoStartCentos(){
+	sudo sh -c 'echo "#!/bin/bash
+#chkconfig:  2345 81 96
+#description: startagentdaemon
+
+start() {
+	cd '$bin'
+	./base start
+}
+stop() {
+	cd '$bin'
+	./base stop
+}
+case "\$1" in
+	start)
+		start
+		;;
+  stop)
+		stop
+		;;
+	*)
+esac
+"> /etc/init.d/agentdaemon'
+
+	cd /etc/init.d
+	sudo chmod +x agentdaemon
+	sudo chkconfig --add agentdaemon
+	sudo chkconfig agentdaemon on
+	sudo chkconfig --list agentdaemon
+}
+
+function autoStopCentos(){
+	cd /etc/init.d
+	sudo chkconfig agentdaemon off
+}
+
+function autoStartAIX() {
+
+  rc=$(lsitab -a|grep rc.local)
+  if [ "$rc" == "" ]; then
+    mkitab -i rcnfs "rc.local:2:once:/etc/rc.local > /dev/console 2>&1"
+  fi
+
+  echo "cd $bin
+	./base start
+	" >> /etc/rc.local
+  chmod 700 /etc/rc.local
+}
+
+function autoStopAIX() {
+  echo 请手动删除/etc/rc.local下相关开机自启动脚本
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    status)
+        status
+        ;;
+    filepath)
+        filepath
+        ;;
+    oldcdc)
+        oldcdc $2
+        ;;
+    autoStart)
+        autoStart
+        ;;
+    autoStop)
+        autoStop
+        ;;
+    *)
+        echo "Usage: {start|stop|restart|status|autoStop|autoStart|filepath}"
+esac
