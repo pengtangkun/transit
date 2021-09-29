@@ -1,0 +1,33 @@
+{
+  "name": "T_idiag_metric_uat",
+  "parser": {
+    "type": "raw",
+    "_cw_collect_time": "true",
+    "disable_record_errdata": "false"
+  },
+  "reader": {
+    "mode": "script",
+    "script_cron": "loop5s",
+    "_cw_log_path": "",
+    "script_params": "LD_LIBRARY_PATH= python3 /opt/kafkaIndicators.py --ip 10.68.238.176 --port 9092 --topic T_idiag_metric_uat",
+    "script_content": "",
+    "script_exec_timeout": "",
+    "script_exec_interprepter": "/bin/bash"
+  },
+  "cleaner": {},
+  "senders": [
+    {
+      "ft_procs": "1",
+      "sender_type": "file",
+      "file_partition": "0",
+      "file_send_path": "/tmp/T_idiag_metric_uat",
+      "file_write_raw": "false"
+    }
+  ],
+  "raw_send": false,
+  "batch_size": 1992294,
+  "extra_info": false,
+  "transforms": [],
+  "batch_interval": 10,
+  "isTransformsOpen": "close"
+}
